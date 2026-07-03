@@ -1,21 +1,11 @@
 export async function GET() {
-    try {
-        const res = await fetch("https://fakestoreapi.com/products?limit=5", {
-            cache: "no-store",
-        });
+    const res = await fetch("https://fakestoreapi.com/products?limit=5");
 
-        return Response.json({
-            ok: res.ok,
-            status: res.status,
-            data: await res.json(),
-        });
-    } catch (err) {
-        return Response.json(
-            {
-                error: err.message,
-                stack: err.stack,
-            },
-            { status: 500 }
-        );
-    }
+    const text = await res.text();
+
+    return Response.json({
+        status: res.status,
+        headers: Object.fromEntries(res.headers.entries()),
+        body: text.substring(0, 500),
+    });
 }
