@@ -36,7 +36,7 @@ export async function getProductById(id) {
 
         return await res.json();
     } catch (error) {
-        console.log("Error : ", error);
-        return null;
+        console.error(error);
+        throw error;
     }
 }
