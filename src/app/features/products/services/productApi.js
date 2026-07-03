@@ -16,8 +16,8 @@ export async function getProduct(limit = 5) {
 
         return await res.json();
     } catch (error) {
-        console.log("Error : ", error);
-        return [];
+        console.error(error);
+        throw error;
     }
 }
 
