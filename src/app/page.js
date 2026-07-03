@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getProduct } from "./features/products/services/productApi";
 import HomeClientLayout from "@/components/organisms/HomeClientLayout";
 
