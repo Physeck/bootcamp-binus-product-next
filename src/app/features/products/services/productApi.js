@@ -1,4 +1,4 @@
-const BASE_URL = "https://fakestoreapi.com/";
+const BASE_URL = "https://fakestoreapi.com";
 
 /**
  * @param {number} limit - Limit to 5 prod
