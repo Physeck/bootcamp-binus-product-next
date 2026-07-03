@@ -5,7 +5,7 @@ const BASE_URL = "https://fakestoreapi.com";
  */
 export async function getProduct(limit = 5) {
     try {
-        const res = await fetch(`${BASE_URL}/products?limit=${limit}`,
+        const res = await fetch(`https://fakestoreapi.com/products?limit=7`,
             {
                 next: { revalidate: 60 }
             });
