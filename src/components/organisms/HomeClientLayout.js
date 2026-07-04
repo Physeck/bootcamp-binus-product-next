@@ -5,10 +5,12 @@ import ProductCard from '@/components/molecules/ProductCard';
 import SearchBar from '../molecules/SearchBar';
 
 
-export default function HomeClientLayout({ initialProducts }) {
+export default function HomeClientLayout({ initialProducts = [] }) {
     const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredProducts = initialProducts.filter((product) =>
+    const products = Array.isArray(initialProducts) ? initialProducts : [];
+
+    const filteredProducts = products.filter((product) =>
         product?.title?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -24,7 +26,9 @@ export default function HomeClientLayout({ initialProducts }) {
                 </div>
             ) : (
                 <div className="text-center py-16 bg-white border border-slate-100 rounded-2xl shadow-xs">
-                    <p className="text-slate-400 text-lg">No matching products found.</p>
+                    <p className="text-slate-400 text-lg">
+                        {products.length === 0 ? 'No products available.' : 'No matching products found.'}
+                    </p>
                 </div>
             )}
         </div>

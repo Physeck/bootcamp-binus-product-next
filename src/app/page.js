@@ -3,8 +3,15 @@ import { getProduct } from "./features/products/services/productApi";
 import HomeClientLayout from "@/components/organisms/HomeClientLayout";
 
 export default async function HomePage() {
+    let products = [];
+    let error = null;
 
-    const products = await getProduct(5);
+    try {
+        products = await getProduct(5);
+    } catch (err) {
+        console.error('Failed to fetch products:', err);
+        error = err.message;
+    }
 
     return (
         <section className="space-y-8">
@@ -17,7 +24,14 @@ export default async function HomePage() {
                 </p>
             </header>
 
-            <HomeClientLayout initialProducts={products} />
+            {error ? (
+                <div className="text-center py-16 bg-red-50 border border-red-200 rounded-2xl">
+                    <p className="text-red-600 text-lg font-medium">Unable to load products</p>
+                    <p className="text-red-500 text-sm mt-2">{error}</p>
+                </div>
+            ) : (
+                <HomeClientLayout initialProducts={products} />
+            )}
         </section>
     );
 }
